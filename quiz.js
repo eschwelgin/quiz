@@ -1,5 +1,6 @@
 var time = 0
 var step = 0 
+var finalScore = 0
 
 var d1 = document.querySelector("#div1")
 var d2 = document.querySelector("#div2")
@@ -15,7 +16,9 @@ d2.innerHTML = ("<p>This quiz will test your aptitude and abily to survive in th
 d3.innerHTML = ('<button class="start">Start Quiz</button>') 
 
 function end() {
-  alert("Game Over \n" + "Final Score = " + time)
+  finalScore = time
+  alert("Game Over \n" + "Final Score = " + finalScore)
+  localStorage.setItem("finalScore", JSON.stringify(finalScore))
   window.location.href = "scores.html"
   //enter initials 
   //store score in local
@@ -88,6 +91,25 @@ b4.addEventListener("click", function() {
   refresh()
 });
 
-
+// for loop for addEventListener, check answer, rotate questions 
+// for(var i=0; i<answerBtns.length;i++){
+//   answerBtns[i].addEventListener('click', function(){
+//     console.log(step)
+//     if(this.textContent === questions[step].answer){
+//       console.log('correct')
+//       step++
+//     }else{
+//       console.log('false')
+//       step++;
+//     }
+//     if(step < questions.length - 1){
+//       d1.textContent = questions[step].title;
+//       b1.textContent = questions[step].choices[0]
+//       b2.textContent = questions[step].choices[1]
+//       b3.textContent = questions[step].choices[2]
+//       b4.textContent = questions[step].choices[3]
+//   }
+//   })
+// }
 
 // console.log(questions[0].title) //format to retrieve value 
