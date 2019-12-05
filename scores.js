@@ -8,10 +8,6 @@ b5.addEventListener("click", function() {
     window.location.href = "index.html"
 });
 
-function gameId() {
-    localStorage.getItem(finalObj)
-}
-
 function highScore() {
     alert("Congrats on your score of " + finalScore)
     finalName = prompt("Enter your name")
@@ -19,12 +15,11 @@ function highScore() {
     alert(finalName + " scored " + finalScore)
 
 }
-highScore()
 
 function appendData() { 
-    for (i=0; i < 9; i++) {
+    for (i=0; i < 10; i++) {
         if  (localStorage.getItem ("name" + [i]) !== null) { 
-            console.log( [i] + "Contains Data")
+            // console.log( [i] + "Contains Data")
         } else {
             localStorage.setItem("name" + [i], JSON.stringify(finalName))
             localStorage.setItem("score" + [i], JSON.stringify(finalScore))
@@ -32,8 +27,6 @@ function appendData() {
             }
         }
     }
-
-appendData()
 
 var saveName1 = []
 var saveScore1 = [] 
@@ -43,25 +36,25 @@ function bringScores() {
         saveScore1[i] = localStorage.getItem("score" + [i])
     }
 }
-bringScores() 
 
-
-
-function appendNameList() {
+function appendList() {
     for (i = 0; i < saveName1.length; i++) {
-        var node = document.createElement("td")
-        node.textContent = saveScore1[i]
-        highNames.appendChild(node)
-    }
-}
-appendNameList()
+        if (saveName1[i] !== null && saveScore1[1] !== null) {
+            var node = document.querySelector("#highName" + [i])
+            var node1 = document.querySelector("#highScore" + [i])
+            node.textContent = saveName1[i]
+            node1.textContent = saveScore1[i]
+        }
 
-function appendScoreList() {
-    for (i = 0; i < saveScore1.length; i++) {
-        var node = document.createElement("td")
-        node.textContent = (saveName1[i])
-        highScores.appendChild(node)
     }
 }
-appendScoreList()
- 
+
+if (finalScore === null) {
+    bringScores() 
+    appendList()
+} else {
+    highScore()
+    appendData()
+    bringScores() 
+    appendList()
+}

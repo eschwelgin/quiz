@@ -13,7 +13,11 @@ var b4 = document.querySelector("#b4")
 
 d1.innerHTML = ("<h1>Test your coding knowledge</h1>")
 d2.innerHTML = ("<p>This quiz will test your aptitude and abily to survive in the hashest of conditions</p>")
-d3.innerHTML = ('<button class="start">Start Quiz</button>') 
+d3.innerHTML = ('<button id="start">Start Quiz</button>' + '<button id="view">View Scores</button>') 
+d4.classList.add("hidden")
+
+var d6 = document.querySelector("#start")
+var d7 = document.querySelector("#view")
 
 function end() {
   finalScore = time
@@ -38,10 +42,12 @@ function refresh() {
 }
 
 function startTimer() {
+  d4.classList.remove("hidden")
   time = 75
   timer = setInterval(function() {
     time--;
-    d2.textContent = (time)
+    // d2.textContent = (time)
+
     if (time !== 0) {
     } else if (time === 0){ // || time <= 0
       clearInterval(timer)
@@ -51,11 +57,18 @@ function startTimer() {
 }
 
 // Start button function
-d3.addEventListener("click", function() {
+d6.addEventListener("click", function() {
   startTimer()
   d2.innerHTML = ""
   d3.innerHTML = ""
   refresh()
+});
+
+// view button function
+d7.addEventListener("click", function() {
+  finalScore = null
+  localStorage.setItem("finalScore", finalScore)
+  window.location.href = "scores.html"
 });
 
 // Quiz button functions 
