@@ -24,9 +24,9 @@ function appendData() {
             localStorage.setItem("name" + [i], JSON.stringify(finalName))
             localStorage.setItem("score" + [i], JSON.stringify(finalScore))
             return
-            }
         }
     }
+}
 
 var saveName1 = []
 var saveScore1 = [] 
